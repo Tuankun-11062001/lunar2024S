@@ -126,11 +126,12 @@ const dragonController = {
   DeleteOneDragon: async (req, res) => {
     try {
       const dragon = await DragonModel.findByIdAndDelete(req.params.id);
-
+      const dragons = await DragonModel.find({})
       return res.status(200).send({
         status: 200,
         message: "success",
-        data: dragon,
+        data: dragons,
+        dataDelete:dragon
       });
     } catch (error) {
       return res.status(500).send({
